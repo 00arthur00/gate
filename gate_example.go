@@ -8,9 +8,9 @@ func ExampleGate() {
 	}
 	for {
 		go func() {
+			defer g.Leave()
 			g.Enter()
 			work()
-			g.Leave()
 		}()
 	}
 	select {}
