@@ -15,5 +15,10 @@ func (g Gate) Enter() {
 
 // Leave to release channel
 func (g Gate) Leave() {
-	<-g
+	select {
+	case <-g:
+	default:
+		panic("gate should run Enter first")
+	}
+
 }
